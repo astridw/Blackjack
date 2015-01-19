@@ -16,8 +16,8 @@ class Hand
       total += card.value
     end
     total
-
   end
+
 end
 
 class Card
@@ -60,12 +60,14 @@ class Deck
       end
     end
     @cards.shuffle!
-  end
+    end
+
 
   def deal
     @cards.shift
   end
 end
+
 
 class Game
 
@@ -115,18 +117,18 @@ class Game
       else
         cards_in_play = false
       end
+    end
 
       if player_hand.value > 21
         cards_in_play = false
       end
 
 
-    end
-
     while dealer_hand.value <= 16
       dealer_hand.new_card(deck.deal)
     end
   end
+
 
   def determine_winner
     puts "------------------------------------------------------------------------"
@@ -142,14 +144,18 @@ class Game
     elsif dealer_hand.value > player_hand.value && player_hand.value <= 21 && dealer_hand.value <=21
         puts "#{@name} Won, your cards add up to #{player_hand.value}!"
     elsif player_hand.value == dealer_hand.value
-      unless player_hand.value >21 && dealer_hand.value >21
+    elsif player_hand.value >21 && dealer_hand.value >21
       puts "Its a Draw! Push!"
     elsif dealer_hand.value > 21
       puts "Dealer Went Over 21 - You Win!"
     elsif player_hand.value > 21
       puts "You Went Over 21, You Lose, your cards add up to #{player_hand.value}"
+
     end
   end
+
+
+
 
   def play
 
@@ -163,9 +169,9 @@ class Game
     else
       puts "Thanks for playing #{@name}!"
     end
-
   end
-end
+
 
 
 Game.new.play
+end
